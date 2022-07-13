@@ -3,7 +3,12 @@ var env = require('./.env')
 var cors = require('cors')
 app.use(cors())
 var http = require('http').createServer(app)
-var io = require('socket.io')(http)
+var io = require('socket.io')(http, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"]
+    }
+  })
 http.listen(env.PORT,()=>{
     console.log(`listening on PORT ${env.PORT}`)
 })
