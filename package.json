@@ -1,0 +1,9 @@
+{
+  "name": "pingador_v4_pusher",
+  "version": "1.0.0",
+  "description": "a notification system for pingador_v4",
+  "main": "index.js",
+  "author": "Guilherme Fidelis da Silva",
+  "license": "MIT",
+  "private": null
+}
