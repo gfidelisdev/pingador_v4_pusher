@@ -3,9 +3,9 @@ class Model {
     table = null
     fields = []
     fillable = []
+    
 
     constructor(){
-        this.id = null
     }
     save(){
         let register = {}
@@ -15,10 +15,8 @@ class Model {
         console.log(register)
     }
     get(){
-
     }
     update(){
-
     }
     upsert(){
         if (this.id){
@@ -29,10 +27,14 @@ class Model {
         }
     }
     delete(){
-
     }
     purge(){
-
+    }
+    static findById(id){
+    }
+    static find(params){
+    }
+    static list(){
     }
 }
 
