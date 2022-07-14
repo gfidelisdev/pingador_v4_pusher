@@ -2,6 +2,10 @@
 
 /node_modules
 
+
 # local env variables
 .env
 .env*.local
+
+#settings
+/.vscode
