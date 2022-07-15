@@ -1,11 +1,15 @@
-const PingEvents = require("../models/PingEvents")
+const faker = require("../mock/faker_ping_events")
+const PingEvents = require("../models/PingEvent")
 
 class PingEventsHelper {
     cache = []
     ip = ''
     limit
-    constructor(limit=20){
+    network_points = []
+    io = null
+    constructor(network_points, io, limit=20){
         this.limit = limit
+        // this.io = io
         for (let i = 0; i<this.limit; i=i+1){
             let pingEvent = new PingEvents()
             pingEvent.id = 0
@@ -14,7 +18,7 @@ class PingEventsHelper {
             pingEvent.created_at = null
             this.cache.push(pingEvent.getJsonObject())
         }
-
+        this.network_points = network_points
     }
 
     get cache() {
@@ -23,8 +27,28 @@ class PingEventsHelper {
 
     pushEvent(pingEvent){
         this.cache.shift()
-        this.cache.push(pingEvent)
+        this.cache.push(pingEvent.getJsonObject())
     }
+
+    send_pings(){
+        setInterval(()=>{
+            // console.log(this.io)
+            this.network_points.forEach(network_point=>{
+                let pe = faker.fakePingEvent(network_point)
+                this.pushEvent(pe)
+                pe.save().then(res=>{
+                    // this.io.on('connection', socket=>{
+                    //     console.log('enviando')
+                    //     socket.emit('db-save','salvo!')
+                    // })
+                })
+                .catch(err => {
+
+                })
+            })
+        },15000)
+    }
+
 
 }
 

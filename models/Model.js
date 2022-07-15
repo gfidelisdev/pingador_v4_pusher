@@ -1,6 +1,7 @@
+const knex=require('../database/database')
 class Model {
     id=null
-    table = null
+    static table = null
     fields = []
     fillable = []
     
@@ -12,7 +13,7 @@ class Model {
         this.fillable.forEach(field=>{
             if (this[field]) register[field] = this[field]
         })
-        console.log(register)
+        return knex(this.table).insert(register)
     }
     get(){
     }
@@ -34,7 +35,11 @@ class Model {
     }
     static find(params){
     }
-    static list(){
+    static async list(){
+        let result = await knex.select().from(this.table)
+        return await result.map(item=>{
+            return {...item}
+        })
     }
 }
 

@@ -8,7 +8,6 @@ const Scanner = {
         if (initialIp.length !== 4 || finalIp.length !== 4){
             throw ipException('ip_format')
         }
-        console.log('ipExeption',ipException)
     },
 }
 

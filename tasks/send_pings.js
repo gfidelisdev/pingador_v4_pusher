@@ -1,3 +1,4 @@
+// #deprecated
 let cache = {}
 const CACHE_LIMIT = 15
 function initializeCache(){
@@ -11,6 +12,10 @@ function ipException(err) {
 
 function sendPings (server_list){
     let results = {}
+    server_list.forEach((server)=>{
+        pushResults()
+        
+    })
     return results
 }
 
