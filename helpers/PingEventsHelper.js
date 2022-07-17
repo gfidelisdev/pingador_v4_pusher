@@ -33,15 +33,10 @@ class PingEventsHelper {
 
     send_pings(){
         setInterval(()=>{
-            // console.log(this.io)
             this.network_points.forEach(network_point=>{
                 let pe = faker.fakePingEvent(network_point)
                 this.pushEvent(pe)
                 pe.save().then(res=>{
-                    // this.io.on('connection', socket=>{
-                    //     console.log('enviando')
-                    //     socket.emit('db-save','salvo!')
-                    // })
                     console.log(`Inserido registro ${res}`)
                     this.io.sendMessage('msg', `Inserido registro ${res}`)
                 })
@@ -49,7 +44,7 @@ class PingEventsHelper {
 
                 })
             })
-        },15000)
+        },60000)
     }
 
 
