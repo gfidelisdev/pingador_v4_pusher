@@ -19,6 +19,7 @@ class PingEventsHelper {
             this.cache.push(pingEvent.getJsonObject())
         }
         this.network_points = network_points
+        this.io = io
     }
 
     get cache() {
@@ -41,6 +42,8 @@ class PingEventsHelper {
                     //     console.log('enviando')
                     //     socket.emit('db-save','salvo!')
                     // })
+                    console.log(`Inserido registro ${res}`)
+                    this.io.sendMessage('msg', `Inserido registro ${res}`)
                 })
                 .catch(err => {
 

@@ -1,9 +1,15 @@
-// var io = require('socket.io')(http, {
-//     cors: {
-//       origin: "*",
-//       methods: ["GET", "POST"]
-//     }
-//   })
-// io.on('connection', socket=>{
-//   module.exports = socket
-// })
+const comm = {
+    start: (server, options)=>{
+        var io = require('socket.io')(server, options)
+
+        io.on('connection', socket=>{
+            sendMessage = (key, message)=>{
+                io.emit(key,message)
+            }
+            module.exports = {sendMessage}
+        })
+    }
+}
+
+console.log(this.sendMessage)
+module.exports = {comm}

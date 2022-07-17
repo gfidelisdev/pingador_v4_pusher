@@ -11,4 +11,10 @@ const Scanner = {
     },
 }
 
-module.exports = Scanner
+const enviarMensagem = (key, mensagem) => {
+    const { sendMessage } = require('../comm')
+    console.log(mensagem)
+    sendMessage(key,mensagem) 
+}
+
+module.exports = {Scanner, enviarMensagem}
