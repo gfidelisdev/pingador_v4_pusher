@@ -37,11 +37,11 @@ DROP TABLE IF EXISTS `ping_events`;
 CREATE TABLE IF NOT EXISTS `ping_events` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `result` float unsigned DEFAULT 0,
-  `network_point_id` int(10) unsigned NOT NULL,
+  `nwpoint_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
-  KEY `FK1_network_point` (`network_point_id`),
-  CONSTRAINT `FK1_network_point` FOREIGN KEY (`network_point_id`) REFERENCES `network_points` (`id`)
+  KEY `FK1_network_point` (`nwpoint_id`),
+  CONSTRAINT `FK1_network_point` FOREIGN KEY (`nwpoint_id`) REFERENCES `network_points` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=latin1;
 
 -- Exportação de dados foi desmarcado.

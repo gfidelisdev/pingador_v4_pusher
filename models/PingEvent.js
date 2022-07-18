@@ -5,7 +5,7 @@ class PingEvent extends Model {
     created_at
     result
     fillable = [
-        'network_point_id',
+        'nwpoint_id',
         'created_at',
         'result'
     ]
@@ -15,16 +15,16 @@ class PingEvent extends Model {
         this.table = 'ping_events'
     }
 
-    setValues(result, network_point_id, created_at){
+    setValues(result, nwpoint_id, created_at){
         this.result = result
-        this.network_point_id = network_point_id
+        this.nwpoint_id = nwpoint_id
         this.created_at = created_at
     }
 
     getJsonObject(){
         return {
-            id:this.id,
-            network_point_id: this.network_point_id,
+            id: this.id,
+            nwpoint_id: this.nwpoint_id,
             created_at:this.created_at,
             result: this.result
         }

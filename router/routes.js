@@ -21,7 +21,7 @@ const route = (app) =>{
     })
     app.post('/api/ping_events/', (req, res)=>{
         let pe = new PingEvent()
-        pe.setValues(req.body.result,req.body.network_point_id,new Date())
+        pe.setValues(req.body.result,req.body.nwpoint_id,new Date())
         pe.save().then(result=>{
             return res.json(result)
         })
