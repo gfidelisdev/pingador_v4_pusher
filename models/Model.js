@@ -15,7 +15,9 @@ class Model {
         })
         return knex(this.table).insert(register)
     }
-    get(){
+    static get(id){
+        return knex(this.table).first().where({id})
+        // return JSON.parse(JSON.stringify(result))
     }
     update(){
     }
@@ -35,11 +37,11 @@ class Model {
     }
     static find(params){
     }
-    static async list(){
-        let result = await knex.select().from(this.table)
-        return await result.map(item=>{
-            return {...item}
-        })
+    static list(){
+        return knex.select().from(this.table)
+        // return await result.map(item=>{
+        //     return {...item}
+        // })
     }
 }
 

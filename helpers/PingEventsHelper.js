@@ -2,7 +2,7 @@ const faker = require("../mock/faker_ping_events")
 const PingEvents = require("../models/PingEvent")
 
 class PingEventsHelper {
-    cache = []
+    static cache = []
     ip = ''
     limit
     network_points = []
@@ -16,19 +16,19 @@ class PingEventsHelper {
             pingEvent.result = null
             pingEvent.server = null
             pingEvent.created_at = null
-            this.cache.push(pingEvent.getJsonObject())
+            PingEventsHelper.cache.push(pingEvent.getJsonObject())
         }
         this.network_points = network_points
         this.io = io
     }
 
-    get cache() {
-        return this.cache
+    static get cache() {
+        return PingEventsHelper.cache
     }
 
     pushEvent(pingEvent){
-        this.cache.shift()
-        this.cache.push(pingEvent.getJsonObject())
+        PingEventsHelper.cache.shift()
+        PingEventsHelper.cache.push(pingEvent.getJsonObject())
     }
 
     send_pings(){
