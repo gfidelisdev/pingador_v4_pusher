@@ -23,6 +23,7 @@ class PingEvent extends Model {
 
     getJsonObject(){
         return {
+            id:this.id,
             network_point_id: this.network_point_id,
             created_at:this.created_at,
             result: this.result
