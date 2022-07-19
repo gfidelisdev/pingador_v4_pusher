@@ -3,7 +3,9 @@ const PingEvent = require("../models/PingEvent");
 const faker = {
     fakePingEvent: (network_point)=>{
         let pe = new PingEvent()
-        pe.setValues(Math.random(), network_point.id, new Date())
+        let result = Math.random()
+        if (result > 0.93) result = null
+        pe.setValues(result, network_point.id, new Date())
         return pe
     }
 }
