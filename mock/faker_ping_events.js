@@ -5,7 +5,7 @@ const faker = {
         let pe = new PingEvent()
         let result = Math.random()
         if (result > 0.93) result = null
-        pe.setValues(result, network_point.id, new Date())
+        pe.setValues({result, nwpoint_id:network_point.id, created_at: new Date()})
         return pe
     }
 }

@@ -31,8 +31,8 @@ const startPings = async () => {
   peh.send_pings()
 }
 startPings()
-setInterval(
-  ()=>console.log(PingEventsHelper.cache)
-  ,60000)
+// setInterval(
+//   ()=>console.log(PingEventsHelper.cache)
+//   ,60000)
 
 route(app)

@@ -15,10 +15,10 @@ class PingEvent extends Model {
         this.table = 'ping_events'
     }
 
-    setValues(result, nwpoint_id, created_at){
-        this.result = result
-        this.nwpoint_id = nwpoint_id
-        this.created_at = created_at
+    setValues(values){
+        this.fillable.forEach(el=>{
+            this[el]=values[el]
+        })
     }
 
     getJsonObject(){
