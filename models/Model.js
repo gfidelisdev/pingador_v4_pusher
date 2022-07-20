@@ -2,8 +2,8 @@ const knex=require('../database/database')
 class Model {
     id=null
     static table = null
-    fields = []
-    fillable = []
+    static fields = []
+    static fillable = []
     
 
     constructor(){
@@ -36,13 +36,14 @@ class Model {
     static findById(id){
     }
     static find(params){
-        return knex.select().from(this.table).where(params).where('deleted_at',null)
+        let qParams = {}
+        this.fields.forEach(field=>{
+            if (params[field]) qParams[field] = params[field]
+        })
+        return knex.select().from(this.table).where(qParams).where('deleted_at',null)
     }
     static list(){
         return knex.select().from(this.table).where('deleted_at',null)
-        // return await result.map(item=>{
-        //     return {...item}
-        // })
     }
 }
 

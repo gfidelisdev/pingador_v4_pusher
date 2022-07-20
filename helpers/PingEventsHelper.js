@@ -38,7 +38,7 @@ class PingEventsHelper {
                 console.log("🚀 ~ file: PingEventsHelper.js ~ line 38 ~ PingEventsHelper ~ setInterval ~ pe", pe)
                 pe.save().then(res=>{
                     console.log(`Inserido registro ${res}`)
-                    this.io.sendMessage('msg', `Inserido registro ${res}`)
+                    // this.io.sendMessage('msg', `Inserido registro ${res}`)
                     pe.id = res[0]
                     this.pushEvent(pe)
                 })
