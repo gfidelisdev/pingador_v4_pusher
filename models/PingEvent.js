@@ -1,10 +1,10 @@
 const Model = require ("./Model")
 const knex=require('../database/database')
 class PingEvent extends Model {
-    network_point
+    nwpoint_id
     created_at
     result
-    static fillable = [
+    fillable = [
         'nwpoint_id',
         'created_at',
         'result'

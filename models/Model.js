@@ -3,7 +3,7 @@ class Model {
     id=null
     static table = null
     static fields = []
-    static fillable = []
+    fillable = []
     
 
     constructor(){

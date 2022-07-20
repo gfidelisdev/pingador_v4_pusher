@@ -7,6 +7,7 @@ class PingEventController extends Controller {
     pe.setValues({ ...req.body, created_at: new Date() });
     pe.save()
       .then((data) => {
+        console.log(data)
         return res.json(data);
       })
       .catch((err) => console.error(err));
@@ -25,10 +26,7 @@ class PingEventController extends Controller {
           return res.json(data);
         })
         .catch((error) => {
-          console.log(
-            "🚀 ~ file: routes.js ~ line 41 ~ app.get ~ error",
-            error
-          );
+        //   console.log(            "🚀 ~ file: routes.js ~ line 41 ~ app.get ~ error",            error          );
           res.status(400);
           return res.json(error);
         });
