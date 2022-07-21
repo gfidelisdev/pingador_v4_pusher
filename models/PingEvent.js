@@ -9,17 +9,26 @@ class PingEvent extends Model {
         'created_at',
         'result'
     ]
-    static fields =[
+    fields =[
         'id',
         'nwpoint_id',
         'created_at',
         'result'
     ]
 
-    static table = 'ping_events'
+    table = 'ping_events'
+
+    static getFields(){
+        return new PingEvent().fields
+    }
+
+    static getFillabe(){
+        return new PingEvent().fillable
+    }
+
+
     constructor(){
         super()
-        this.table = 'ping_events'
     }
 
     setValues(values){
@@ -36,14 +45,14 @@ class PingEvent extends Model {
             result: this.result
         }
     }
-    static find(params){
+    find(params){
         let qParams = {}
         this.fields.forEach(field=>{
             if (params[field]) qParams[field] = params[field]
         })
         return knex.select().from(this.table).where(qParams).limit(params.limit)
     }
-    static list(){
+    list(){
         return knex.select().from(this.table)
     }
 }

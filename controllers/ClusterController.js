@@ -14,7 +14,7 @@ class ClusterController extends Controller {
   }
 
   static async get(req, res) {
-    Cluster.get(req.params.id)
+    new Cluster().get(req.params.id)
       .then((data) => {
         if (typeof data == "undefined" || data == null) {
           throw "There are no data!";
@@ -28,7 +28,7 @@ class ClusterController extends Controller {
   }
   static async list(req, res) {
     if (req.query.cluster_id) {
-      Cluster.find(req.query)
+      new Cluster().find(req.query)
         .then((data) => {
           if (typeof data == "undefined" || data == null) {
             throw "There are no data!";
@@ -44,7 +44,7 @@ class ClusterController extends Controller {
           return res.json(error);
         });
     } else {
-      Cluster.list().then((data) => {
+      new Cluster().list().then((data) => {
         return res.json(data);
       });
     }

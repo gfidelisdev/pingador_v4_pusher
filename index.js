@@ -23,9 +23,9 @@ let options = {
 
 let socketServer = new SocketServer(http,options)
 
-/*
+
 const startPings = async () => {
-  let nwp_list = await NetworkPoint.list()
+  let nwp_list = await new NetworkPoint().list()
   nwp_list = nwp_list.map(nwp=>({...nwp}))
   let peh = new PingEventsHelper(nwp_list, socketServer)
   peh.send_pings()
@@ -33,7 +33,7 @@ const startPings = async () => {
 
 startPings()
 
-*/
+
 
 // setInterval(
 //   ()=>console.log(PingEventsHelper.cache)

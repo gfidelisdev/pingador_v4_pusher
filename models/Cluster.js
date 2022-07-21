@@ -20,6 +20,7 @@ class Cluster extends Model {
         this.table = 'clusters'
     }
 
+
 }
 
 module.exports = Cluster

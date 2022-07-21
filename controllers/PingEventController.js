@@ -18,7 +18,7 @@ class PingEventController extends Controller {
     
     console.log("🚀 ~ file: PingEventController.js ~ line 20 ~ PingEventController ~ list ~ req.query", req.query)
     if (req.query.nwpoint_id) {
-      PingEvent.find(req.query)
+      new PingEvent().find(req.query)
         .then((data) => {
           if (typeof data == "undefined" || data == null) {
             throw "There are no data!";

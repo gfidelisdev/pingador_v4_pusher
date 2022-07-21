@@ -14,7 +14,7 @@ class NetworkPointController extends Controller {
   }
 
   static async get(req, res) {
-    NetworkPoint.get(req.params.id)
+    new NetworkPoint().get(req.params.id)
       .then((data) => {
         if (typeof data == "undefined" || data == null) {
           throw "There are no data!";
@@ -29,7 +29,7 @@ class NetworkPointController extends Controller {
   static async list(req, res) {
     console.log(req.query)
     if (req.query.cluster_id) {
-      NetworkPoint.find(req.query)
+      new NetworkPoint().find(req.query)
         .then((data) => {
           if (typeof data == "undefined" || data == null) {
             throw "There are no data!";
@@ -45,7 +45,7 @@ class NetworkPointController extends Controller {
           return res.json(error);
         });
     } else {
-      NetworkPoint.list().then((data) => {
+      new NetworkPoint().list().then((data) => {
         return res.json(data);
       });
     }

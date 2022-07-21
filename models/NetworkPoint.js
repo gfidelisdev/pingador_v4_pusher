@@ -12,7 +12,7 @@ class NetworkPoint extends Model {
         'name',
         'ip_address'
     ]
-    static fields = [
+    fields = [
         'fqdn',
         'name',
         'ip_address',
@@ -25,12 +25,11 @@ class NetworkPoint extends Model {
 
 
     ]
-    static table = 'network_points'
+    table = 'network_points'
+    
     constructor(){
         super()
-        this.table = 'network_points'
     }
-
 }
 
 module.exports = NetworkPoint

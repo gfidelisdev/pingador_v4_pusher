@@ -1,8 +1,8 @@
 const knex=require('../database/database')
 class Model {
     id=null
-    static table = null
-    static fields = []
+    table = null
+    fields = []
     fillable = []
     
 
@@ -10,12 +10,13 @@ class Model {
     }
     save(){
         let register = {}
+        console.log(`filable -> ${this.fillable}`)
         this.fillable.forEach(field=>{
             if (this[field]) register[field] = this[field]
         })
         return knex(this.table).insert(register)
     }
-    static get(id){
+    get(id){
         return knex(this.table).first().where({id})
         // return JSON.parse(JSON.stringify(result))
     }
@@ -33,17 +34,18 @@ class Model {
     }
     purge(){
     }
-    static findById(id){
+    findById(id){
     }
-    static find(params){
+
+    find(params){
         let qParams = {}
+
         this.fields.forEach(field=>{
             if (params[field]) qParams[field] = params[field]
         })
-        console.log(qParams)
         return knex.select().from(this.table).where(qParams).where('deleted_at',null)
     }
-    static list(){
+    list(){
         return knex.select().from(this.table).where('deleted_at',null)
     }
 }

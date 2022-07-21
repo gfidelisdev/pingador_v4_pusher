@@ -29,7 +29,7 @@ const route = (app) =>{
     app.get('/api/network_points/:id/', NetworkPointController.get)
 
     app.get('/api/clusters',(req, res)=>{
-        Cluster.list().then(data=>{
+        new Cluster().list().then(data=>{
             return res.json(data)
         })
     })
