@@ -10,7 +10,20 @@ class NetworkPoint extends Model {
     fillable = [
         'fqdn',
         'name',
-        'ip'
+        'ip_address'
+    ]
+    static fields = [
+        'fqdn',
+        'name',
+        'ip_address',
+        'nwp_role_id',
+        'cluster_id',
+        'created_by',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+
+
     ]
     static table = 'network_points'
     constructor(){

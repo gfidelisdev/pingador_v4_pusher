@@ -40,6 +40,7 @@ class Model {
         this.fields.forEach(field=>{
             if (params[field]) qParams[field] = params[field]
         })
+        console.log(qParams)
         return knex.select().from(this.table).where(qParams).where('deleted_at',null)
     }
     static list(){

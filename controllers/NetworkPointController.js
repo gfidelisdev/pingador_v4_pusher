@@ -27,6 +27,7 @@ class NetworkPointController extends Controller {
       });
   }
   static async list(req, res) {
+    console.log(req.query)
     if (req.query.cluster_id) {
       NetworkPoint.find(req.query)
         .then((data) => {
