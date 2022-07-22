@@ -37,8 +37,8 @@ class PingEventsHelper {
                 let pe = faker.fakePingEvent(network_point)
                 // console.log("🚀 ~ file: PingEventsHelper.js ~ line 38 ~ PingEventsHelper ~ setInterval ~ pe", pe)
                 pe.save().then(res=>{
-                    console.log(`Inserido registro ${res}`)
-                    // this.io.sendMessage('msg', `Inserido registro ${res}`)
+                    console.log(`Inserido registro ${res}`, `network_point: ${network_point.id}`)
+                    // this.io.sendMessage('msg', `Inserido registro ${res}`, `network_point: ${network_point.id}`)
                     pe.id = res[0]
                     this.pushEvent(pe)
                 })

@@ -50,11 +50,13 @@ class PingEvent extends Model {
         this.fields.forEach(field=>{
             if (params[field]) qParams[field] = params[field]
         })
-        return knex.select().from(this.table).where(qParams).limit(params.limit)
+        let data = knex.select().from(this.table).where(qParams).orderBy('id','desc').limit(params.limit)
+        console.log(data.toSQL().toNative().sql)
+        return data
     }
-    list(){
-        return knex.select().from(this.table)
-    }
+    // list(){
+    //     return knex.select().from(this.table)
+    // }
 }
 
 module.exports = PingEvent

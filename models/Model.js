@@ -10,7 +10,6 @@ class Model {
     }
     save(){
         let register = {}
-        console.log(`filable -> ${this.fillable}`)
         this.fillable.forEach(field=>{
             if (this[field]) register[field] = this[field]
         })
