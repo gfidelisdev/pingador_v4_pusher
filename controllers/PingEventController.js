@@ -7,26 +7,25 @@ class PingEventController extends Controller {
     pe.setValues({ ...req.body, created_at: new Date() });
     pe.save()
       .then((data) => {
-        // console.log(data)
         return res.json(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+          res.status(400);
+          return res.json(error);
+        });
   }
 
   static async get(req, res) {}
   static async list(req, res) {
-    console.log("🚀 ~ file: PingEventController.js ~ line 20 ~ PingEventController ~ list ~ req.query", req.query)
     if (req.query.nwpoint_id) {
       new PingEvent().find(req.query)
         .then((data) => {
           if (typeof data == "undefined" || data == null) {
             throw "There are no data!";
           }
-          console.log(data)
           return res.json(data.reverse());
         })
         .catch((error) => {
-        //   console.log(            "🚀 ~ file: routes.js ~ line 41 ~ app.get ~ error",            error          );
           res.status(400);
           return res.json(error);
         });

@@ -10,7 +10,10 @@ class NetworkPointController extends Controller {
       .then((data) => {
         return res.json(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        res.status(400);
+        return res.json(error);
+      });
   }
 
   static async get(req, res) {
@@ -27,7 +30,6 @@ class NetworkPointController extends Controller {
       });
   }
   static async list(req, res) {
-    console.log(req.query)
     if (req.query.cluster_id) {
       new NetworkPoint().find(req.query)
         .then((data) => {
@@ -37,10 +39,6 @@ class NetworkPointController extends Controller {
           return res.json(data);
         })
         .catch((error) => {
-          console.log(
-            "🚀 ~ file: routes.js ~ line 41 ~ app.get ~ error",
-            error
-          );
           res.status(400);
           return res.json(error);
         });

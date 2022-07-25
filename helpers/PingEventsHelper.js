@@ -43,11 +43,11 @@ class PingEventsHelper {
                     this.pushEvent(pe)
                 })
                 .catch(err => {
-                    // console.error(err)
+                    console.error(err)
                 })
             })
             this.io.sendMessage('msg', `Registros inseridos!`)
-        },2000)
+        },60000)
     }
 
 

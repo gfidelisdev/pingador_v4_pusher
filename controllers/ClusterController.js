@@ -10,7 +10,10 @@ class ClusterController extends Controller {
       .then((data) => {
         return res.json(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        res.status(400)
+        return res.json(err)
+      });
   }
 
   static async get(req, res) {
@@ -36,10 +39,6 @@ class ClusterController extends Controller {
           return res.json(data);
         })
         .catch((error) => {
-          console.log(
-            "🚀 ~ file: routes.js ~ line 41 ~ app.get ~ error",
-            error
-          );
           res.status(400);
           return res.json(error);
         });

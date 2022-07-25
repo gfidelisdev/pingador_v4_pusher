@@ -51,7 +51,6 @@ class PingEvent extends Model {
             if (params[field]) qParams[field] = params[field]
         })
         let data = knex.select().from(this.table).where(qParams).orderBy('id','desc').limit(params.limit)
-        console.log(data.toSQL().toNative().sql)
         return data
     }
     // list(){
