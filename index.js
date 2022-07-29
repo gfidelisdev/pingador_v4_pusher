@@ -1,4 +1,5 @@
-var app = require('express')()
+var express = require('express')
+var app = express()
 var env = require('./.env')
 var cors = require('cors')
 const PingEventsHelper = require('./helpers/PingEventsHelper')
@@ -6,8 +7,9 @@ const NetworkPoint = require('./models/NetworkPoint')
 const SocketServer = require('./socketserver')
 const route = require('./router/routes')
 
-
 app.use(cors())
+app.use(express.json())
+
 var http = require('http').createServer(app)
 
 http.listen(env.PORT,()=>{

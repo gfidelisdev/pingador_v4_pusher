@@ -36,6 +36,13 @@ class Model {
     findById(id){
     }
 
+    setValues(values){
+        console.log(values)
+        this.fillable.forEach(el=>{
+            this[el]=values[el]
+        })
+    }
+
     find(params){
         let qParams = {}
 

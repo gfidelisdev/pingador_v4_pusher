@@ -27,6 +27,7 @@ const route = (app) =>{
 
     app.get('/api/network_points/',NetworkPointController.list)
     app.get('/api/network_points/:id/', NetworkPointController.get)
+    app.post('/api/network_points', NetworkPointController.create)
 
     app.get('/api/clusters',(req, res)=>{
         new Cluster().list().then(data=>{

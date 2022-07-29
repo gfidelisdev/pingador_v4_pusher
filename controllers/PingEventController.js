@@ -16,6 +16,17 @@ class PingEventController extends Controller {
   }
 
   static async get(req, res) {}
+
+  /*
+  * Get a list of network points, by given parameters
+  * req.query: {
+  *   nwpoint_id: #the network point id the ping event belongs to
+  *   limit: #the limit of results given
+  * }
+  * 
+  * If no parameters are given, it returns 500 code, canceling the
+  * request because there are too many results for this query
+  */
   static async list(req, res) {
     if (req.query.nwpoint_id) {
       new PingEvent().find(req.query)

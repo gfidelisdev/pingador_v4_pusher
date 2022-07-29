@@ -10,7 +10,7 @@ class NetworkPointController extends Controller {
       .then((data) => {
         return res.json(data);
       })
-      .catch((err) => {
+      .catch((error) => {
         res.status(400);
         return res.json(error);
       });
