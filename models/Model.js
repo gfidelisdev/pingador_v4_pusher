@@ -17,7 +17,6 @@ class Model {
     }
     get(id){
         return knex(this.table).first().where({id})
-        // return JSON.parse(JSON.stringify(result))
     }
     update(){
     }
