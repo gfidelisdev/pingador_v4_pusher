@@ -46,7 +46,9 @@ class PingEventsHelper {
                     console.error(err)
                 })
             })
-            this.io.sendMessage('msg', `Registros inseridos!`)
+            if (this.io.sendMessage){
+                this.io.sendMessage('msg', `Registros inseridos!`)
+            }
         },60000)
     }
 
