@@ -1,5 +1,6 @@
 const faker = require("../mock/faker_ping_events")
 const PingEvents = require("../models/PingEvent")
+const interval = 60000
 
 class PingEventsHelper {
     static cache = []
@@ -49,7 +50,7 @@ class PingEventsHelper {
             if (this.io.sendMessage){
                 this.io.sendMessage('msg', `Registros inseridos!`)
             }
-        },60000)
+        },interval)
     }
 
 
