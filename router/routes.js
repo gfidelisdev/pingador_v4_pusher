@@ -6,11 +6,20 @@ const PingEventController = require('../controllers/PingEventController')
 const NetworkPointController = require("../controllers/NetworkPointController")
 
 const route = (app) =>{
+    /**
+     * @params {
+  *         nwpoint_id: #the network point id the ping event belongs to
+  *         limit: #the limit of results given
+  *       }
+     */
     app.get('/api/ping_events/', PingEventController.list)
     // app.get('/api/ping_events/', (req, res)=> {
     //     console.log(`requisition asked, ${PingEventsHelper.cache}`)
     //     return res.json(PingEventsHelper.cache)
     // })
+
+
+
     app.get('/api/ping_events/:id/', (req, res)=>{
         PingEvent.get(req.params.id).then(data=>{
             if (typeof data=='undefined' || data == null){
@@ -23,8 +32,23 @@ const route = (app) =>{
             return res.json(error)
         })
     })
+
+    /**
+     * @params {
+     *      result: #the result of the ping sent
+     *      nwpoint_id: #the network point referenced
+     * }
+     */
     app.post('/api/ping_events/', PingEventController.create)
 
+    /**
+     * @params (optional) {
+     *      cluster_id: #the cluster to filter the results - only network points from that cluster must be shown
+     * }
+     * 
+     * If no params are provided, return all network points stored in database
+     */
+    app.get('/api/network_points/eager', NetworkPointController.listEager)
     app.get('/api/network_points/',NetworkPointController.list)
     app.get('/api/network_points/:id/', NetworkPointController.get)
     app.post('/api/network_points', NetworkPointController.create)
@@ -34,6 +58,7 @@ const route = (app) =>{
             return res.json(data)
         })
     })
+
 }
 
 module.exports = route

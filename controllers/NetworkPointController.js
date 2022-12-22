@@ -29,7 +29,11 @@ class NetworkPointController extends Controller {
         return res.json(error);
       });
   }
+
+
   static async list(req, res) {
+    // TODO: implements eager loading of last ping_events, according to limit criteria. Check if there is a ping_events: true criteria and the limit.
+    // If no limit is provided, uses a default value
     if (req.query.cluster_id) {
       new NetworkPoint().find(req.query)
         .then((data) => {
@@ -47,7 +51,18 @@ class NetworkPointController extends Controller {
         return res.json(data);
       });
     }
+
   }
+  static async listEager(req, res){
+    console.log('aqui')
+    let result = await new NetworkPoint().listEager(res)
+    return res.json(await result)
+  }
+
+
+
+
+
 
   static async listByCriteria(req, res) {}
 

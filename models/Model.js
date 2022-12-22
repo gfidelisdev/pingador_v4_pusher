@@ -53,6 +53,8 @@ class Model {
     list(){
         return knex.select().from(this.table).where('deleted_at',null)
     }
+
+    
 }
 
 module.exports = Model

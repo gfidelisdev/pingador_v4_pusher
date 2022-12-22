@@ -31,6 +31,11 @@ class PingEvent extends Model {
         super()
     }
 
+    static get(id){
+        let pe = new PingEvent()
+        return pe.get(id)
+    }
+
     setValues(values){
         this.fillable.forEach(el=>{
             this[el]=values[el]
