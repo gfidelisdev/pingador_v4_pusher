@@ -1,6 +1,6 @@
 const faker = require("../mock/faker_ping_events")
 const PingEvents = require("../models/PingEvent")
-const interval = 60000
+const interval = 6000
 
 class PingEventsHelper {
     static cache = []
