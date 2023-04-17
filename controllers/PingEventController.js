@@ -10,26 +10,27 @@ class PingEventController extends Controller {
         return res.json(data);
       })
       .catch((err) => {
-          res.status(400);
-          return res.json(error);
-        });
+        res.status(400);
+        return res.json(error);
+      });
   }
 
   static async get(req, res) {}
 
   /*
-  * Get a list of network points, by given parameters
-  * req.query: {
-  *   nwpoint_id: #the network point id the ping event belongs to
-  *   limit: #the limit of results given
-  * }
-  * 
-  * If no parameters are given, it returns 500 code, canceling the
-  * request because there are too many results for this query
-  */
+   * Get a list of network points, by given parameters
+   * req.query: {
+   *   nwpoint_id: #the network point id the ping event belongs to
+   *   limit: #the limit of results given
+   * }
+   *
+   * If no parameters are given, it returns 500 code, canceling the
+   * request because there are too many results for this query
+   */
   static async list(req, res) {
     if (req.query.nwpoint_id) {
-      new PingEvent().find(req.query)
+      new PingEvent()
+        .find(req.query)
         .then((data) => {
           if (typeof data == "undefined" || data == null) {
             throw "There are no data!";
@@ -41,14 +42,23 @@ class PingEventController extends Controller {
           return res.json(error);
         });
     } else {
-      res.status(500)
-      res.json({data:{
-        info:'There are too many results for this query!'
-      }})
+      res.status(500);
+      res.json({
+        data: {
+          info: "There are too many results for this query!",
+        },
+      });
     }
   }
 
-  static async listByCriteria(req, res) {}
+  static async listByCriteria(req, res) {
+    if (req.params.nwpoint_id) {
+      new PingEvent().find(req.params).then((data) => {
+        console.log(data);
+        res.json(data);
+      });
+    }
+  }
 
   static async delete(req, res) {}
 
