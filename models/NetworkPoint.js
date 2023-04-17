@@ -1,7 +1,7 @@
 const knex = require("../database/database")
 const Model = require("./Model")
 const PingEvent = require("./PingEvent")
-
+const DEFAULT_LIMIT = 15
 class NetworkPoint extends Model {
   ip
   fqdn
@@ -27,33 +27,24 @@ class NetworkPoint extends Model {
     super()
   }
 
-  async listEager(res) {
+  async listEager(limit = DEFAULT_LIMIT) {
     let result = await knex.select().from(this.table).where("deleted_at", null)
-    result = await result.map((r) => ({ ...r }))
+    result = result.map((r) => ({ ...r }))
 
     result = await Promise.all(
       result.map(async (item) => {
         let ping_event = await new PingEvent().find({
           nwpoint_id: item.id,
-          limit: 15,
+          limit: limit,
         })
-        // console.log("🚀 ~ file: NetworkPoint.js ~ line 45 ~ NetworkPoint ~ letping_event=awaitnewPingEvent ~ ping_event", ping_event)
         ping_event = await ping_event.map((pe) => ({ ...pe }))
-        item["pingEvents"] = ping_event.map((pe) => {
+        item["pingEvents"] = await ping_event.map((pe) => {
           return pe
         })
-        // console.log("🚀 ~ file: NetworkPoint.js ~ line 50 ~ NetworkPoint ~ result=result.map ~ item", item)
-        return await item
+        return item
       })
     )
-    // result = await result.map(async (item)=>{
-
-    // })
-    console.log(
-      "🚀 ~ file: NetworkPoint.js ~ line 38 ~ NetworkPoint ~ listEager ~ result",
-      await result
-    )
-    return await result
+    return result
   }
 }
 
