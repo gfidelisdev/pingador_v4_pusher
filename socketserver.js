@@ -1,27 +1,27 @@
-const {Server} = require('socket.io')
+const { Server } = require("socket.io")
 class SocketServer {
     io
     key
     value
-    sockets=[]
+    sockets = []
     sendMessage = null
-    constructor(httpServer, options){
+    constructor(httpServer, options) {
         this.io = new Server(httpServer, options)
-        this.io.on('connection',socket=>{
+        this.io.on("connection", (socket) => {
             this.sockets.push(socket)
-            this.sendMessage = async (key, value)=>{
+            this.sendMessage = async (key, value) => {
                 this.io.emit(key, value)
             }
         })
     }
 
-    setMessage(key, value){
-        const interval = setInterval(()=>{
-            if(this.sendMessage){
+    setMessage(key, value) {
+        const interval = setInterval(() => {
+            if (this.sendMessage) {
                 this.sendMessage(key, value)
                 clearInterval(interval)
             }
-        },5)
+        }, 5)
     }
 }
 
